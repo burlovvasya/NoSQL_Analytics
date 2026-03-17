@@ -1,0 +1,26 @@
+PREFIX dbo: <http://dbpedia.org/ontology/&gt;
+PREFIX dbr: <http://dbpedia.org/resource/&gt;
+PREFIX schema: <http://schema.org/&gt;
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT ?filmTitle ?directorName ?commentCount ?year
+WHERE {
+  ?film rdfs:label ?filmTitle .
+  ?film dbo:director ?director .
+  ?director rdfs:label ?directorName .
+  ?film dbo:releaseDate ?year .
+  ?film schema:commentCount ?commentCount .
+  
+  # Фильтруем цветные фильмы
+  ?film dbo:color dbr:Color .
+  
+  # Фильтруем фильмы с комментариями > 100
+  FILTER(?commentCount > 100)
+  
+  # Фильтр по языку (английский)
+  FILTER(LANG(?filmTitle) = "en")
+  FILTER(LANG(?directorName) = "en")
+}
+ORDER BY DESC(?commentCount)
+LIMIT 20

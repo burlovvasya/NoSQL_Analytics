@@ -1,0 +1,39 @@
+PREFIX dbo: <http://dbpedia.org/ontology/&gt;
+PREFIX dbr: <http://dbpedia.org/resource/&gt;
+PREFIX schema: <http://schema.org/&gt;
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT ?directorName (COUNT(DISTINCT ?film) AS ?filmCount) ?filmTitle ?isColor ?commentCount
+WHERE {
+  # Находим режиссеров, снявших более 10 фильмов
+  ?film dbo:director ?director .
+  ?director rdfs:label ?directorName .
+  
+  # Получаем название фильма
+  ?film rdfs:label ?filmTitle .
+  
+  # Получаем информацию о цветности
+  OPTIONAL {
+    ?film dbo:cinematography ?cinematography .
+    ?film dbo:color ?color .
+    BIND(IF(?color = dbr:Color, "цветной", "черно-белый") AS ?isColor)
+  }
+  
+  # Получаем количество комментариев (если есть)
+  OPTIONAL {
+    ?film schema:commentCount ?commentCount .
+  }
+  
+  # Фильтруем: только режиссеры с более чем 10 фильмами
+  {
+    SELECT ?director (COUNT(DISTINCT ?f) AS ?cnt)
+    WHERE {
+      ?f dbo:director ?director .
+    }
+    GROUP BY ?director
+    HAVING (COUNT(DISTINCT ?f) > 10)
+  }
+}
+GROUP BY ?directorName ?filmTitle ?isColor ?commentCount
+ORDER BY DESC(?filmCount)
