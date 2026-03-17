@@ -92,7 +92,7 @@ cd ~/Downloads/dba/nonrel/graphdb && sudo docker compose up -d
 sudo docker ps
 ```
 
-![Запущенные контейнеры](screenshots/working_containers.JPG)
+![Запущенные контейнеры](screens/working_containers.JPG)
 
 
 ### 2. Установка зависимостей Python
@@ -110,13 +110,13 @@ pip3 install -r requirements.txt
 
 **Результат:** Создано 5 подписок с разными тарифами (Basic, Standard, Premium, Student, Family).
 
-![Управление подписками](screenshots/subscription_list.JPG)
+![Управление подписками](screens/subscription_list.JPG)
 
 #### 1.2 Обновление цены подписки Basic (+10%)
 
 **Результат:** Цена Basic увеличена с 299 до 329 рублей (+10%).
 
-![Обновление цены подписки](screenshots/Price_update.JPG)
+![Обновление цены подписки](screens/Price_update.JPG)
 
 ### Задание 2: GraphDB (SPARQL-запросы)
 
@@ -128,23 +128,23 @@ sudo docker cp graphdb-1:/opt/graphdb/examples/workbench-guides/movies/movies.tt
 sudo chown dev:dev ~/lab2-nosql-variant5/data/movies.ttl
 ```
 
-![Загрузка датасета в GraphDB](screenshots/GraphDB_interface.JPG)
+![Загрузка датасета в GraphDB](screens/GraphDB_interface.JPG)
 
 #### 2.2 Запрос 1: Режиссеры, снявшие более 10 фильмов
 
 **Результат:** Запрос выполнен успешно. В датасете movies.ttl нет режиссеров с >10 фильмами, что демонстрирует корректную работу синтаксиса.
 
-![Режиссеры, снявшие более 10 фильмов](screenshots/directors_with_10plus_movies.JPG)
+![Режиссеры, снявшие более 10 фильмов](screens/directors_with_10plus_movies.JPG)
 
 #### 2.3 Запрос 2: Цветные фильмы с более чем 100 комментариями
 
 **Результат:** Запрос выполнен успешно. В датасете movies.ttl нет цветных фильмов с комментариями >100.
 
-![Цветные фильмы с более чем 100 комментариями](screenshots/directors_with_10plus_movies.JPG)
+![Цветные фильмы с более чем 100 комментариями](screens/directors_with_10plus_movies.JPG)
 
 ### Задание 3: Бизнес-аналитика
 
-![Сравнительный анализ цветных и черно-белых фильмов](screenshots/analytics.JPG)
+![Сравнительный анализ цветных и черно-белых фильмов](screens/analytics.JPG)
 
 ---
 
