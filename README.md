@@ -110,7 +110,7 @@ pip3 install -r requirements.txt
 
 **Результат:** Создано 5 подписок с разными тарифами (Basic, Standard, Premium, Student, Family).
 
-![Управление подписками](screens/subscription_list.jpg)
+![Управление подписками](screens/subscriptions_list.jpg)
 
 #### 1.2 Обновление цены подписки Basic (+10%)
 
